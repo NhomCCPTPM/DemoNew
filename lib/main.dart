@@ -52,7 +52,121 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(child: Column()),
+      body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: Column(
+            children: [
+              Padding (
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  decoration: const InputDecoration (
+                    labelText: 'Số thứ nhất',
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.star_rate),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  controller: txtsothunhat,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  decoration: const InputDecoration (
+                    labelText: 'Số thứ hai',
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.nightlight_round),
+                  ),
+                  keyboardType: TextInputType.number,
+                  controller: txtsothuhai,
+                ),
+              ),
+              ListTile(
+                title: const Text('Cộng'),
+                leading: Radio<PhepTinh>(
+                  value: PhepTinh.cong,
+                  groupValue: _pheptinh,
+                  onChanged: (PhepTinh? value) {
+                    setState(() {
+                      _pheptinh = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Trừ'),
+                leading: Radio<PhepTinh>(
+                  value: PhepTinh.tru,
+                  groupValue: _pheptinh,
+                  onChanged: (PhepTinh? value) {
+                    setState(() {
+                      _pheptinh = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Nhân'),
+                leading: Radio<PhepTinh>(
+                  value: PhepTinh.nhan,
+                  groupValue: _pheptinh,
+                  onChanged: (PhepTinh? value) {
+                    setState(() {
+                      _pheptinh = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Chia'),
+                leading: Radio<PhepTinh>(
+                  value: PhepTinh.chia,
+                  groupValue: _pheptinh,
+                  onChanged: (PhepTinh? value) {
+                    setState(() {
+                      _pheptinh = value!;
+                    });
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: ElevatedButton(
+                  onPressed: () {
+                    var a = double.parse(txtsothunhat.text);
+                    var b = double.parse(txtsothuhai.text);
+                    ketqua = tinhToan(a, b, _pheptinh);
+                    txtketqua.text = lamTron(ketqua, isChecked);
+                  },
+                  child: const Text('Kết quả'),
+                ),
+              ),
+              Padding (
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  readOnly: true,
+                  decoration: const InputDecoration (
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.settings),
+                  ),
+                  controller: txtketqua,
+                ),
+              ),
+              ListTile(
+                leading: Checkbox (
+                  value: isChecked,
+                  onChanged: (bool? value){
+                    setState(() {
+                      isChecked = value;
+                    });
+                    txtketqua.text = lamTron(ketqua, isChecked);
+                  },
+                ),
+                title: const Text("Làm tròn số"),
+              ),
+            ],
+          ),
+      ), 
     );
   }
 }
