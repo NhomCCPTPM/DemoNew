@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 
 //Main scene
@@ -31,10 +33,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 enum PhepTinh { cong, tru, nhan, chia }
+
 class _MyHomePageState extends State<MyHomePage> {
   final txtSoThuNhat = TextEditingController();
   final txtSoThuHai = TextEditingController();
   final txtKetQua = TextEditingController();
+  // ignore: prefer_final_fields
   PhepTinh _phepTinh = PhepTinh.cong;
   bool isChecked = true;
   double ketQua = 0;
@@ -45,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     txtKetQua.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
