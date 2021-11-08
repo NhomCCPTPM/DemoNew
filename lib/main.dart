@@ -30,7 +30,22 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+enum PhepTinh { cong, tru, nhan, chia }
 class _MyHomePageState extends State<MyHomePage> {
+  final txtSoThuNhat = TextEditingController();
+  final txtSoThuHai = TextEditingController();
+  final txtKetQua = TextEditingController();
+  PhepTinh _phepTinh = PhepTinh.cong;
+  bool isChecked = true;
+  double ketQua = 0;
+  @override
+  void dispose() {
+    txtSoThuNhat.dispose();
+    txtSoThuHai.dispose();
+    txtKetQua.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
